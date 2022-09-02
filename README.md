@@ -55,7 +55,7 @@ Next, you should set the configuration in `pipeline/config/settings.py`  for glo
 We release several usage examples in `examples/` and `script/` for data generation and the usage of invidual step in pipeline. please check it, if you want to use or modify it.
 
 ### Mixable pair generation 
-To generate the mixabile, you need to run two script sequentially. First, you should run the script in `script/create_segment.py` which is going to segment the collection of EDM track to several music segment. 
+To generate the mixabile pair, you need to run two script sequentially. First, you should run the script in `script/create_segment.py` which is going to segment the collection of EDM track to several music segment. 
 
 ```
 python create_segment.py [--feature=(bool, ex: 1)] [--stem=(bool, ex: 1)] [--segment=(bool, ex:1)] [--n_core=(int, ex: 5)] [--n_gpu=(int, ex: 0)]
