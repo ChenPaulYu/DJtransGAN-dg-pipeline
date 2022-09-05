@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 
 ### Set up extenal package
-We use[ music puzzle game](https://github.com/remyhuang/music-puzzle-games) to conduct the mixability estimation, thus you need to clone and rename it to `music_puzzle_games` in the begining. 
+We use [music puzzle game](https://github.com/remyhuang/music-puzzle-games) to conduct the mixability estimation, thus you need to clone and rename it to `music_puzzle_games` in the begining. 
 
 ```
 
@@ -49,7 +49,7 @@ git clone https://github.com/remyhuang/music-puzzle-games.git music_puzzle_games
 Next, you should set the configuration in `pipeline/config/settings.py`  for global usage of the repo, Most important of all, you should set the path of `TRACK_DIR`, `MIX_DIR`.
 
 1. `TRACK_DIR` :  the directory conatin the collection of EDM tracks, you should put all your EDM track under the `{TRACK_DIR}/audio`. 
-2. `MIX_DIR` : the directory conatin the collection of mix and its cue point, you should put all you mix under the `{MIX_DIR}/audio` and provide a meta data file `{TRACK_DIR}/meta.json` include the cue point (only need cue out point as known as switch point) of individual mix (we provide a sample in the repo for you to check the format). 
+2. `MIX_DIR` : the directory conatin the collection of mix and its cue point, you should put all you mix under the `{MIX_DIR}/audio` and provide a meta data file `{MIX_DIR}/meta.json` include the cue point (only need cue out point as known as switch point) of individual mix (we provide a sample in the repo for you to check the format). 
 
 
 ## Usage
@@ -57,7 +57,7 @@ Next, you should set the configuration in `pipeline/config/settings.py`  for glo
 We release several usage examples in `examples/` and `script/` for data generation and the usage of invidual step in pipeline. please check it, if you want to use or modify it.
 
 ### Mixable pair generation 
-To generate the mixable pair, you need to run two script sequentially. First, you should run the script in `script/create_segment.py` which is going to extract the music segment by segmenting the collection of EDM track.
+To generate the mixable pair, you need to run two scripts sequentially. First, you should run the script in `script/create_segment.py`, which is going to extract the music segment by segmenting the collection of EDM tracks.
 
 ```
 python create_segment.py [--feature=(bool, ex: 1)] [--stem=(bool, ex: 1)] [--segment=(bool, ex:1)] [--n_core=(int, ex: 5)] [--n_gpu=(int, ex: 0)]
@@ -79,17 +79,17 @@ python create_pair.py [--match=(str, e.g: None, all, nn, rule)] [--n_sample=(int
 ```
 
 - `--match` :  speicify the mixabiltiy estimaiton approach.  
-	- None: random pick one segment as best candidate
-	- rule: use muscial rule to filter out the data and random pick one segment as best candidate.
-	- nn: use neural netwrok (SEN form [music puzzle game](https://github.com/remyhuang/music-puzzle-games)) to pick one segemnt as best candidate.
-	- all: use muscial rule to filter out the data and use neural network to pick one segment as best candaite from filted data. 
+	- None: random pick one segment as matching result.
+	- rule: use musical rule to filter out the data and random pick one segment as matching result.
+	- nn: use neural network (SEN form [music puzzle game](https://github.com/remyhuang/music-puzzle-games)) to pick one segemnt as matching result.
+	- all: use musical rule to filter out the data and use neural network to pick one segment as matching result. 
 - `--n_core` :  the number of mutlti-processor you want to use.
-- `--n_sample` :  the maxium number of sample for mixability estimation (speed up the training).
+- `--n_sample` :  the maximum number of sample for mixability estimation to speed up the training.
 
 
 
 ### Mix generation
-To train the DJtransGAN, we still need a professional DJ mix as reference for GAN to learn. Thus, you can run the script in `script/create_mix.py` to get such dataset. 
+To train the DJtransGAN, we still need a professional DJ mix as a reference for GAN to learn. Thus, you can run the script in `script/create_mix.py` to get a such data. Please remember to provide essential material to `MIX_DIR.`
 
 
 ```
